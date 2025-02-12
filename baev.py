@@ -390,15 +390,7 @@ class BAEV:
                             else:
                                 buffer.write(u64(0))
                             buffer.write(u32(len(trigger["Parameters"])))
-                            has_vec = False
-                            for param in trigger["Parameters"]:
-                                if type(param) == list:
-                                    has_vec = True
-                                    break
-                            if has_vec:
-                                buffer.write(u32(0x10))
-                            else:
-                                buffer.write(u32(0x8))
+                            buffer.write(u32(0x8))
                             buffer.write(f32(trigger["Start Frame"]))
                             buffer.write(f32(0))
                     if "Hold Array" in node["Event"][event]:
@@ -409,15 +401,7 @@ class BAEV:
                             else:
                                 buffer.write(u64(0))
                             buffer.write(u32(len(hold["Parameters"])))
-                            has_vec = False
-                            for param in hold["Parameters"]:
-                                if type(param) == list:
-                                    has_vec = True
-                                    break
-                            if has_vec:
-                                buffer.write(u32(0x10))
-                            else:
-                                buffer.write(u32(0x8))
+                            buffer.write(u32(0x8))
                             buffer.write(f32(hold["Start Frame"]))
                             buffer.write(f32(hold["End Frame"]))
                 offset = buffer.tell()
